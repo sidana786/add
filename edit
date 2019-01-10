@@ -26,3 +26,20 @@ deleteData(id) {
              self.props.getData()
          });
     }
+ updateData=(id)=>{
+      console.log('id :', id);
+      //var self=this;
+      var date=new Date();
+      var time=moment(date).format("DD/MM/YYYY");      
+      var  data={"title": this.state.Title,  "author":this.state.Author , "description" :this.state.Description,"time":time }
+      fetch('http://localhost:3000/data/'+id, {
+         method: 'put',
+         body: JSON.stringify(data),
+         headers: {
+           'Accept': 'application/json',
+           'Content-Type': 'application/json'
+         }
+       }).then(function(response){
+          console.log('response :', response);
+       })
+   }
